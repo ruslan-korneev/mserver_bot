@@ -9,3 +9,5 @@ setuptools==54.0.0
 asyncio==3.4.3
 aiogram==2.12.1
 pytz==2021.1
+django==3.2
+psycopg2==2.8.6

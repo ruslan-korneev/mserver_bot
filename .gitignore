@@ -1,0 +1,8 @@
+# Specify filepatterns you want git to ignore.
+
+__pycache__
+ncbot/venv/
+ncbot/db_env.py
+bot.log
+config.py
+db_keys.json
