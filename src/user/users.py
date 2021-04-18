@@ -5,22 +5,33 @@ from common import db
 
 
 # noinspection PyCompatibility
-class User(NamedTuple):
+class ChatUser(NamedTuple):
     """Структура пользователей"""
     chat_id: str
     subscribe: bool
 
 
-class Users:
+class ChatUsers:
     def __init__(self):
-        self._users = self._load_users()
+        self._chat_users = self._load_chat_users()
+        self._chat_users_with_sub = self._load_chat_users_with_sub()
 
     @staticmethod
-    def _load_users() -> List[User]:
+    def _load_chat_users() -> List[ChatUser]:
         """Возвращает список пользователей из БД"""
-        users = db.fetchall("user", "chat_id subscribe".split())
-        return users
+        chat_users = db.user_list("chat_id".split())
+        return chat_users
 
-    def get_all_users(self) -> List[Dict]:
+    @staticmethod
+    def _load_chat_users_with_sub() -> List[ChatUser]:
+        """Возвращает список пользователей из БД"""
+        chat_users = db.user_list_with_sub("chat_id".split())
+        return chat_users
+
+    def get_all_chat_users(self) -> List[Dict]:
         """Возвращает список пользователей."""
-        return self._users
+        return self._chat_users
+
+    def get_all_chat_users_with_sub(self) -> List[Dict]:
+        """Возвращает список пользователей."""
+        return self._chat_users_with_sub

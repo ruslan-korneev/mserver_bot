@@ -21,8 +21,8 @@ def check_ssl_cirt(urls):
 
     context = ssl.create_default_context()
     for url in urls:
-        with socket.create_connection((url['url'], port)) as sock:
-            with context.wrap_socket(sock, server_hostname=url['url']) as ssock:
+        with socket.create_connection((url, port)) as sock:
+            with context.wrap_socket(sock, server_hostname=url) as ssock:
                 data = json.dumps(ssock.getpeercert())
                 data_2 = json.loads(data)
                 data_2 = data_2['notAfter']

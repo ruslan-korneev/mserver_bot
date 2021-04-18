@@ -22,7 +22,7 @@ class AddUser(NamedTuple):
 def add_user(chat_id: str) -> AddUser:
     """Добавляет нового пользователя.
     Принимает на вход идентификатор пользователя, пришедшего в бот."""
-    db.insert("user", {
+    db.insert_user({
         "chat_id": chat_id,
         "subscribe": True,
     })
@@ -31,6 +31,11 @@ def add_user(chat_id: str) -> AddUser:
                    subscribe=True)
 
 
+def unsubscribe(chat_id: str) -> None:
+    """Удаляет пользователя по его chat id"""
+    db.unsubscribe(chat_id)
+
+
 def delete_user(chat_id: str) -> None:
     """Удаляет пользователя по его chat id"""
-    db.delete_user("user", chat_id)
+    db.delete_user(chat_id)

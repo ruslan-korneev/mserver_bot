@@ -1,0 +1,10 @@
+rvenv
+
+__pycache__
+bot.log
+db.log
+
+bot.key
+bot_2.key
+
+.env

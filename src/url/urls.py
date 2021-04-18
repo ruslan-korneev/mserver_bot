@@ -18,7 +18,7 @@ class Urls:
     @staticmethod
     def _load_urls() -> List[Url]:
         """Возвращает список url из БД"""
-        urls = db.fetchall("urls", "url alarm_status".split())
+        urls = db.url_list("url".split())
         return urls
 
     def get_all_urls(self) -> List[Dict]:

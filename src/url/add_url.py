@@ -21,15 +21,12 @@ class AddUrl(NamedTuple):
 def add_url(url: str) -> AddUrl:
     """Добавляет нового url.
     Принимает на вход url, пришедшего в бот."""
-    db.insert("urls", {
-        "url": url,
-        "alarm_status": True,
-    })
+    db.insert_url(url)
     return AddUrl(ident=None,
                   url=url,
-                  alarm_status=True)
+                  alarm_status=False)
 
 
 def del_url(url: str) -> None:
     """Удаляет url по его url"""
-    db.delete_url("urls", url)
+    db.delete_url(url)
