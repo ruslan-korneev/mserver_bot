@@ -13,7 +13,7 @@
 -   open terminal:
     - `mkdir nc-bot`
     - `cd nc-bot`
-    - `git clone http://gitlab.nicecode.biz/korneev.r/telebot-3.git`
+    - `git clone https://github.com/shaggy-axel/mserver_bot.git`
     - `touch .env`
 -   copy paste from env_sample to `.env` and change values for you
 
