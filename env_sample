@@ -1,0 +1,9 @@
+POSTGRES_DB=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+SECRET_KEY='django-insecure-key'
+DB_TYPE=postgres
+DJANGO_SUPERUSER_USERNAME=username
+DJANGO_SUPERUSER_PASSWORD=password
+TELEGRAM_API_TOKEN=token_from_bot_father
+SENTRY_DSN=url_to_your_sentry_project

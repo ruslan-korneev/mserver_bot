@@ -1,0 +1,41 @@
+version: "2.1"
+   
+services:
+
+  web:
+    tty: true
+    image: python:3.8
+    depends_on:
+      - db
+    volumes:
+      - .:/opt/telebot
+    container_name: telebot3-web
+    ports:
+      - "0.0.0.0:8080:8000"
+    env_file: .env
+    working_dir: /opt/telebot
+    command: /bin/bash -c 'scripts/run_server.sh'
+    # command: tail -f /dev/null
+  
+  bot:
+    tty: true
+    image: python:3.8
+    depends_on:
+      - db    
+    env_file: .env
+    volumes:
+      - .:/opt/telebot
+    container_name: telebot3-bot
+    working_dir: /opt/telebot
+    command: /bin/bash -c 'scripts/run_bot.sh'
+    # command: tail -f /dev/null
+
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    container_name: telebot3-db
+    env_file: .env
+
+volumes:
+  postgres_data:
