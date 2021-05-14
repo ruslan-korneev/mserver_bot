@@ -1,4 +1,4 @@
-import asyncio
+import asyncio # NOQA [E902]
 import logging
 import operator
 import os
