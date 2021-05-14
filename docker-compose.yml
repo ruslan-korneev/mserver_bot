@@ -9,7 +9,7 @@ services:
       - db
     volumes:
       - .:/opt/telebot
-    container_name: web
+    container_name: telebot3-web
     ports:
       - "0.0.0.0:8080:8000"
     env_file: .env
@@ -25,7 +25,7 @@ services:
     env_file: .env
     volumes:
       - .:/opt/telebot
-    container_name: bot
+    container_name: telebot3-bot
     working_dir: /opt/telebot
     command: /bin/bash -c 'scripts/run_bot.sh'
     # command: tail -f /dev/null
@@ -34,7 +34,7 @@ services:
     image: postgres:12.0-alpine
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
-    container_name: db
+    container_name: telebot3-db
     env_file: .env
 
 volumes:

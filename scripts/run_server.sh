@@ -2,8 +2,6 @@
 
 VENV=./rvenv
 DEPLOY_FLAG=/opt/telebot/deploy_state.flag
-DJANGO_USERNAME=username
-DJANGO_PASSWORD=password
 
 touch $DEPLOY_FLAG
 
@@ -12,24 +10,29 @@ if [ ! -d $VENV ]; then
     $VENV/bin/pip install -U pip
 fi
 
-
+$VENV/bin/python -m pip install --upgrade pip
 $VENV/bin/pip install -r requirements.txt
 
-$VENV/bin/python admin/manage.py makemigrations
-$VENV/bin/python admin/manage.py migrate
+# $VENV/bin/python src/bot_admin/manage.py migrate --fake sessions zero
+# $VENV/bin/python src/bot_admin/manage.py migrate --fake
+# $VENV/bin/python src/bot_admin/manage.py migrate --fake-initial
+# $VENV/bin/python src/bot_admin/manage.py makemigrations
 
-$VENV/bin/python admin/manage.py collectstatic --no-input
+$VENV/bin/python src/bot_admin/manage.py migrate
+$VENV/bin/python src/bot_admin/manage.py collectstatic --no-input
 
-# {$DJANGO_SUPERUSER_USERNAME}{$DJANGO_SUPERUSER_PASSWORD}
-if [ -n $DJANGO_USERNAME ] && [ -n $DJANGO_PASSWORD ] ; then
-	echo "from django.contrib.auth.models import User; User.objects.create_superuser('username', 'admin@example.com', 'password')" | $VENV/bin/python admin/manage.py shell
-    # $VENV/bin/python admin/manage.py closepoll $DJANGO_USERNAME $DJANGO_PASSWORD
-fi
+# $VENV/bin/python src/bot_admin/manage.py createmysuperuser
+# echo "from django.contrib.auth.models import User; 
+# 	User.objects.create_superuser('${DJANGO_SUPERUSER_USERNAME}', '${MAIL}', '${DJANGO_SUPERUSER_PASSWORD}')" | 
+# 	$VENV/bin/python src/bot_admin/manage.py shell
 
-$VENV/bin/python admin/manage.py runserver 0.0.0.0:8000
+$VENV/bin/python src/bot_admin/manage.py runserver 0.0.0.0:8000
 
 rm -f $DEPLOY_FLAG
 
 echo "Run Django"
 
 # $VENV/bin/uwsgi --yaml ./src/uwsgi.yml
+
+
+
