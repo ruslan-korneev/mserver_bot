@@ -5,7 +5,7 @@ import requests
 from requests.exceptions import ConnectionError, SSLError
 
 
-def check_80(url):
+def check_80(url): # NOQA [C901]
     returned_message = ''
     url = check_http(url)
     try:
@@ -35,7 +35,7 @@ def check_80(url):
         return returned_message
 
 
-def check_443(url):
+def check_443(url): # NOQA [C901]
     returned_message = ''
     url = check_http_s(url)
     try:

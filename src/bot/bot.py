@@ -390,7 +390,7 @@ async def fix_url_server(message: types.Message):
         await message.reply('У вас не достаточно прав')
 
 
-async def periodic(sleep_for):
+async def periodic(sleep_for): # NOQA [C901]
     while True:
         await asyncio.sleep(sleep_for)
 
@@ -515,6 +515,7 @@ async def periodic(sleep_for):
                 for chat_id in chat_ids:
                     if (db.access_check_collegue(str(chat_id)) or db.access_check_admin(str(chat_id))):
                         await bot.send_message(chat_id, reply, disable_notification=True)
+}
 
 
 if __name__ == '__main__':

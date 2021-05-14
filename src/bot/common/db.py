@@ -129,7 +129,7 @@ def server_list(columns: List[str]):
         old_list.append(rows[i][0])
 
     new_list = []
-    for l in range(len(old_list)):
+    for l in range(len(old_list)): # NOQA [E741]
         new_list.append(old_list[l][1:-1])
 
     result = []
@@ -149,7 +149,7 @@ def server_list_with_alarm(columns: List[str]):
         old_list.append(rows[i][0])
 
     new_list = []
-    for l in range(len(old_list)):
+    for l in range(len(old_list)): # NOQA [E741]
         new_list.append(old_list[l][1:-1])
 
     result = []
